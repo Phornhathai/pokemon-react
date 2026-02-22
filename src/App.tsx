@@ -1,5 +1,4 @@
 import { createBrowserRouter } from "react-router";
-
 import HomePage from "./pages/home";
 import DetailPage from "./pages/detail";
 import { RouterProvider } from "react-router/dom";
@@ -17,7 +16,11 @@ function App() {
     },
   ]);
 
-  return <RouterProvider router={router} />;
+  return (
+    <div className="bg-[url('/src/images/list_bg.jpg')] min-h-screen">
+      <RouterProvider router={router} />
+    </div>
+  );
 }
 
 export default App;
