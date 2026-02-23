@@ -1,0 +1,5 @@
+const usePokemonCard = () => {
+ 
+};
+
+export { usePokemonCard };
