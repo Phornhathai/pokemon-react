@@ -1,9 +1,13 @@
 import type { Generation } from "@/interface/type";
 import { generationList, typesList, sortList } from "@/utils/optionList";
+import { useSearchForm } from "@/components/SearchForm";
 
 export default function SearchForm() {
+  const { fieldKeyword, fieldGeneration, fieldType, fieldSorting } =
+    useSearchForm();
+
   return (
-    <div className="grid grid-cols-4 gap-x-5 text-white">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 text-white">
       <div className="">
         <label
           htmlFor="generation"
@@ -14,10 +18,8 @@ export default function SearchForm() {
         <select
           id="generation"
           className="bg-[#253641] border border-gray-300 text-white text-sm rounded-lg focus:ring-[#325eaa] focus:border-[#325eaa] block w-full p-2.5"
+          {...fieldGeneration}
         >
-          <option selected value="">
-            Choose a generation
-          </option>
           {generationList.map((generation: Generation, index: number) => {
             return (
               <option
@@ -41,14 +43,12 @@ export default function SearchForm() {
         <select
           id="type"
           className="bg-[#253641] border border-gray-300 text-white text-sm rounded-lg focus:ring-[#325eaa] focus:border-[#325eaa] block w-full p-2.5"
+          {...fieldType}
         >
-          <option selected value="">
-            Choose a type
-          </option>
           {typesList.map((type: string, index: number) => {
             return (
               <option
-                value={index}
+                value={type}
                 key={`type-key-${index}`}
                 className="capitalize"
               >
@@ -68,12 +68,12 @@ export default function SearchForm() {
         <select
           id="sort"
           className="bg-[#253641] border border-gray-300 text-white text-sm rounded-lg focus:ring-[#325eaa] focus:border-[#325eaa] block w-full p-2.5"
+          {...fieldSorting}
         >
-          <option value="">Choose a sort option</option>
           {sortList.map((sortOption: string, index: number) => {
             return (
               <option
-                value={index}
+                value={sortOption}
                 key={`sort-key-${index}`}
                 className="capitalize"
               >
@@ -91,6 +91,7 @@ export default function SearchForm() {
           Search
         </label>
         <input
+          {...fieldKeyword} // Register the input field with react-hook-form
           id="search"
           className="bg-[#253641] border border-gray-300 text-white text-sm rounded-lg focus:ring-[#325eaa] focus:border-[#325eaa] block w-full p-2.5"
           placeholder="Search by name or ID"
