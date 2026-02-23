@@ -1,7 +1,8 @@
 import { createBrowserRouter } from "react-router";
 import HomePage from "./pages/home";
-import DetailPage from "./pages/detail";
+
 import { RouterProvider } from "react-router/dom";
+import DetailPage from "./pages/detail";
 
 function App() {
   const router = createBrowserRouter([
@@ -11,13 +12,13 @@ function App() {
       element: <HomePage />,
     },
     {
-      path: "/detail",
+      path: "/detail/:name",
       element: <DetailPage />,
     },
   ]);
 
   return (
-    <div className="bg-[url('/src/images/list_bg.jpg')] min-h-screen">
+    <div className="bg-[url('images/list_bg.jpg')] min-h-screen">
       <RouterProvider router={router} />
     </div>
   );
