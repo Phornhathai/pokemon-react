@@ -8,8 +8,26 @@ interface IGetPokemonDetailResponse {
 }
 
 export const pokemonDetailService = {
-  getPokemonDetail: (name: string): Promise<IGetPokemonDetailResponse> => {
-    const response = axios.get(`${API_BASE_URL}/pokemon/${name}`);
-    return response;
+  getPokemonDetail: async (
+    name: string,
+  ): Promise<IGetPokemonDetailResponse> => {
+    try {
+      const response = await axios.get(`${API_BASE_URL}/pokemon/${name}`);
+      return {
+        status: response.status,
+        data: response.data,
+      };
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        return {
+          status: error.response?.status ?? 500,
+          data: undefined,
+        };
+      }
+      return {
+        status: 500,
+        data: undefined,
+      };
+    }
   },
 };
