@@ -20,6 +20,7 @@ export interface IPokemonDetailResponse {
   stats: Stat3[];
   types: Type[];
   weight: number;
+  image?: string;
 }
 
 export interface Ability {
